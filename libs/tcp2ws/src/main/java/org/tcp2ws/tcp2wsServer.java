@@ -34,59 +34,62 @@ public class tcp2wsServer {
         mtpcdn.put(18, "test_venus." + domain);
         mtpcdn.put(19, "test_aurora." + domain);
 
-//media
-        cdn.put("149.154.175.50", "pluto." + domain);
-        cdn.put("149.154.167.51", "venus." + domain);
-        cdn.put("95.161.76.100", "venus." + domain);
-        cdn.put("149.154.175.100", "aurora." + domain);
-        cdn.put("149.154.167.91", "vesta." + domain);
-        cdn.put("149.154.171.5", "flora." + domain);
-
         try {
+            //DC1
+            cdn.put("149.154.175.5", "pluto." + domain);
+            cdn.put("149.154.175.50", "pluto." + domain);
+            cdn.put("149.154.175.51", "pluto." + domain);
+            cdn.put("149.154.175.52", "pluto." + domain);
+            cdn.put("149.154.175.53", "pluto." + domain);
+            cdn.put("149.154.175.55", "pluto." + domain);
+            cdn.put("149.154.175.57", "pluto." + domain);
+            cdn.put("149.154.175.59", "pluto." + domain);
             cdn.put(InetAddress.getByName("2001:b28:f23d:f001:0000:0000:0000:000a").getHostAddress(), "pluto." + domain);
-            cdn.put(InetAddress.getByName("2001:67c:4e8:f002:0000:0000:0000:000a").getHostAddress(), "venus." + domain);
-            cdn.put(InetAddress.getByName("2001:b28:f23d:f003:0000:0000:0000:000a").getHostAddress(), "aurora." + domain);
-            cdn.put(InetAddress.getByName("2001:67c:4e8:f004:0000:0000:0000:000a").getHostAddress(), "vesta." + domain);
-            cdn.put(InetAddress.getByName("2001:b28:f23f:f005:0000:0000:0000:000a").getHostAddress(), "flora." + domain);
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-//proxy
-        cdn.put("149.154.175.5", "pluto." + domain);
-        cdn.put("149.154.161.144", "venus." + domain);
-        cdn.put("149.154.167.15", "venus." + domain);
-        cdn.put("149.154.167.5", "venus." + domain);
-        cdn.put("149.154.167.6", "venus." + domain);
-        cdn.put("149.154.167.7", "venus." + domain);
-        cdn.put("149.154.167.2", "venus." + domain);
-        cdn.put("91.108.4.", "vesta." + domain);
-        cdn.put("149.154.164.", "vesta." + domain);
-        cdn.put("149.154.165.", "vesta." + domain);
-        cdn.put("149.154.166.", "vesta." + domain);
-        cdn.put("149.154.167.8", "vesta." + domain);
-        cdn.put("149.154.167.9", "vesta." + domain);
-        cdn.put("91.108.56.", "flora." + domain);
-        cdn.put("111.62.91.", "venus." + domain);
-
-        try {
             cdn.put(InetAddress.getByName("2001:b28:f23d:f001:0000:0000:0000:000d").getHostAddress(), "pluto." + domain);
+            //DC2
+            cdn.put("95.161.76.100", "venus." + domain);
+            cdn.put("111.62.91.", "venus." + domain);
+            cdn.put("149.154.161.144", "venus." + domain);
+            cdn.put("149.154.167.2", "venus." + domain);
+            cdn.put("149.154.167.5", "venus." + domain);
+            cdn.put("149.154.167.6", "venus." + domain);
+            cdn.put("149.154.167.7", "venus." + domain);
+            cdn.put("149.154.167.15", "venus." + domain);
+            cdn.put("149.154.167.41", "venus." + domain);
+            cdn.put("149.154.167.50", "venus." + domain);
+            cdn.put("149.154.167.51", "venus." + domain);
+            cdn.put("149.154.167.222", "venus." + domain);
+            cdn.put(InetAddress.getByName("2001:67c:4e8:f002:0000:0000:0000:000a").getHostAddress(), "venus." + domain);
+            cdn.put(InetAddress.getByName("2001:67c:4e8:f002:0000:0000:0000:000b").getHostAddress(), "venus." + domain);
             cdn.put(InetAddress.getByName("2001:67c:4e8:f002:0000:0000:0000:000d").getHostAddress(), "venus." + domain);
+            //DC3
+            cdn.put("149.154.175.100", "aurora." + domain);
+            cdn.put(InetAddress.getByName("2001:b28:f23d:f003:0000:0000:0000:000a").getHostAddress(), "aurora." + domain);
             cdn.put(InetAddress.getByName("2001:b28:f23d:f003:0000:0000:0000:000d").getHostAddress(), "aurora." + domain);
+            //DC4
+            cdn.put("91.108.4.", "vesta." + domain);
+            cdn.put("149.154.164.", "vesta." + domain);
+            cdn.put("149.154.165.", "vesta." + domain);
+            cdn.put("149.154.166.", "vesta." + domain);
+            cdn.put("149.154.167.8", "vesta." + domain);
+            cdn.put("149.154.167.9", "vesta." + domain);
+            cdn.put("149.154.167.91", "vesta." + domain);
+            cdn.put("149.154.167.92", "vesta." + domain);
+            cdn.put(InetAddress.getByName("2001:67c:4e8:f004:0000:0000:0000:000a").getHostAddress(), "vesta." + domain);
             cdn.put(InetAddress.getByName("2001:67c:4e8:f004:0000:0000:0000:000d").getHostAddress(), "vesta." + domain);
+            cdn.put(InetAddress.getByName("2001:67c:4e8:f004:0000:0000:0000:000b").getHostAddress(), "vesta." + domain);
+            //DC5
+            cdn.put("91.108.56.", "flora." + domain);
+            cdn.put("149.154.171.5", "flora." + domain);
+            cdn.put(InetAddress.getByName("2001:b28:f23f:f005:0000:0000:0000:000a").getHostAddress(), "flora." + domain);
             cdn.put(InetAddress.getByName("2001:b28:f23f:f005:0000:0000:0000:000d").getHostAddress(), "flora." + domain);
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-
-//test
-        cdn.put("149.154.175.10", "test_pluto." + domain);
-        cdn.put("149.154.175.40", "test_pluto." + domain);
-        cdn.put("149.154.167.40", "test_venus." + domain);
-        cdn.put("149.154.175.117", "test_aurora." + domain);
-
-        try {
+            //TEST
+            cdn.put("149.154.175.10", "test_pluto." + domain);
+            cdn.put("149.154.175.40", "test_pluto." + domain);
             cdn.put(InetAddress.getByName("2001:b28:f23d:f001:0000:0000:0000:000e").getHostAddress(), "test_pluto." + domain);
+            cdn.put("149.154.167.40", "test_venus." + domain);
             cdn.put(InetAddress.getByName("2001:67c:4e8:f002:0000:0000:0000:000e").getHostAddress(), "test_venus." + domain);
+            cdn.put("149.154.175.117", "test_aurora." + domain);
             cdn.put(InetAddress.getByName("2001:b28:f23d:f003:0000:0000:0000:000e").getHostAddress(), "test_aurora." + domain);
         } catch (UnknownHostException e) {
             e.printStackTrace();
