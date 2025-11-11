@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    implementation("com.neovisionaries:nv-websocket-client:2.14")
+//    implementation("com.neovisionaries:nv-websocket-client:2.14")
 
 }
 

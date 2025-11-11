@@ -158,7 +158,7 @@ public class Socks4Impl {
         String _server = m_ServerIP.getHostAddress();
         String server = null;
         for (int i = 0; server == null && i <= 3; i++)
-            server = (tcp2wsServer.cdn).get(_server.substring(0, _server.length() - i));
+            server = (tcp2wsServer.HostMaps).get(_server.substring(0, _server.length() - i));
         return server != null ? server : _server;
     }
 

@@ -25,16 +25,14 @@ public class ProxyHandler implements Runnable {
 
     private InputStream m_ClientInput = null;
     private OutputStream m_ClientOutput = null;
-
     private Object m_lock;
+    private String mServer;
 
     Socket m_ClientSocket;
     WebSocket m_ServerSocket = null;
 
     byte[] m_Buffer = new byte[SocksConstants.DEFAULT_BUF_SIZE];
     final static byte[] emptyBytes = new byte[8];
-    String server;
-    String host;
 
     Cipher outgoingDecryptCipher;
 
@@ -46,7 +44,7 @@ public class ProxyHandler implements Runnable {
         try {
             m_ClientSocket.setSoTimeout(SocksConstants.DEFAULT_PROXY_TIMEOUT);
         } catch (SocketException e) {
-            e.fillInStackTrace();
+            e.printStackTrace();
         }
     }
 
@@ -82,7 +80,7 @@ public class ProxyHandler implements Runnable {
         }
 
         if (m_ServerSocket != null && m_ServerSocket.isOpen()) {
-            HashSet<WebSocket> set = tcp2wsServer.inactiveWs.get(server);
+            HashSet<WebSocket> set = tcp2wsServer.inactiveWs.get(mServer);
             if (set != null) {
                 set.add(m_ServerSocket);
             }
@@ -102,28 +100,23 @@ public class ProxyHandler implements Runnable {
                 m_ClientOutput.write(buffer, 0, len);
                 m_ClientOutput.flush();
             } catch (IOException e) {
-                e.fillInStackTrace();
+                e.printStackTrace();
             }
         }
     }
 
     public void connectToServer(String server) throws IOException {
-        if (server.contains("#")) {
-            this.server = server.split("#")[0];
-            this.host = server.split("#")[1];
-        } else if (server.isEmpty()) {
+        if (server.isEmpty()) {
             close();
             return;
-        } else {
-            this.server = server;
-            this.host = server;
         }
+        mServer = server;
         prepareServer();
     }
 
     protected void prepareServer() throws IOException {
         synchronized (m_lock) {
-            HashSet<WebSocket> set = tcp2wsServer.inactiveWs.get(server);
+            HashSet<WebSocket> set = tcp2wsServer.inactiveWs.get(mServer);
             if (set != null) {
                 Iterator<WebSocket> iterator = set.iterator();
                 while (iterator.hasNext()) {
@@ -142,8 +135,8 @@ public class ProxyHandler implements Runnable {
                 try {
                     m_ServerSocket = new WebSocketFactory()
                         .setConnectionTimeout(5000)
-                        .setServerName(server)
-                        .createSocket((tcp2wsServer.tls ? "wss://" : "ws://") + host + "/api")
+                        .setCDN(tcp2wsServer.host)
+                        .createSocket((tcp2wsServer.tls ? "wss://" : "ws://") + mServer + "/api")
                         .addListener(new WebSocketAdapter() {
                             public void onBinaryMessage(WebSocket websocket, byte[] binary) {
                                 sendToClient(binary);
@@ -151,7 +144,7 @@ public class ProxyHandler implements Runnable {
 
                             public void onDisconnected(WebSocket websocket, WebSocketFrame serverCloseFrame, WebSocketFrame clientCloseFrame, boolean closedByServer) {
                                 if (closedByServer) {
-                                    System.out.println(server + "," + clientCloseFrame.getCloseCode() + clientCloseFrame.getCloseReason());
+                                    System.out.println(mServer + "," + clientCloseFrame.getCloseCode() + clientCloseFrame.getCloseReason());
                                     m_ServerSocket.sendClose();
                                     close();
                                 }
@@ -159,7 +152,6 @@ public class ProxyHandler implements Runnable {
                         })
                         .addExtension("permessage-deflate")
                         .addProtocol("binary")
-                        .addHeader("Host", server)
                         .addHeader("User-Agent", tcp2wsServer.userAgent)
                         .addHeader("Conn-Hash", tcp2wsServer.connHash)
                         .connect();
@@ -168,8 +160,8 @@ public class ProxyHandler implements Runnable {
                     if (e.getMessage().contains("520"))
                         count_520++;
                     else {
-                        System.out.println(server);
-                        e.fillInStackTrace();
+                        System.out.println(mServer);
+                        e.printStackTrace();
                         break;
                     }
                 }

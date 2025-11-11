@@ -44,6 +44,7 @@ public final class Utils {
             : format("%s/%s", IP.getHostName(), IP.getHostAddress());
     }
 
+    @SuppressWarnings("DefaultLocale")
     @NotNull
     public static String getSocketInfo(Socket sock) {
         return sock == null
@@ -51,6 +52,7 @@ public final class Utils {
             : format("<%s:%d>", Utils.iP2Str(sock.getInetAddress()), sock.getPort());
     }
 
+    @SuppressWarnings("DefaultLocale")
     @NotNull
     public static String getSocketInfo(DatagramPacket DGP) {
         return DGP == null
