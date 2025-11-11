@@ -34,6 +34,7 @@ public class ProxyHandler implements Runnable {
     byte[] m_Buffer = new byte[SocksConstants.DEFAULT_BUF_SIZE];
     final static byte[] emptyBytes = new byte[8];
     String server;
+    String host;
 
     Cipher outgoingDecryptCipher;
 
@@ -45,7 +46,7 @@ public class ProxyHandler implements Runnable {
         try {
             m_ClientSocket.setSoTimeout(SocksConstants.DEFAULT_PROXY_TIMEOUT);
         } catch (SocketException e) {
-            e.printStackTrace();
+            e.fillInStackTrace();
         }
     }
 
@@ -101,18 +102,22 @@ public class ProxyHandler implements Runnable {
                 m_ClientOutput.write(buffer, 0, len);
                 m_ClientOutput.flush();
             } catch (IOException e) {
-                e.printStackTrace();
+                e.fillInStackTrace();
             }
         }
     }
 
     public void connectToServer(String server) throws IOException {
-
-        if (server.equals("")) {
+        if (server.contains("#")) {
+            this.server = server.split("#")[0];
+            this.host = server.split("#")[1];
+        } else if (server.isEmpty()) {
             close();
             return;
+        } else {
+            this.server = server;
+            this.host = server;
         }
-        this.server = server;
         prepareServer();
     }
 
@@ -137,7 +142,8 @@ public class ProxyHandler implements Runnable {
                 try {
                     m_ServerSocket = new WebSocketFactory()
                         .setConnectionTimeout(5000)
-                        .createSocket((tcp2wsServer.tls ? "wss://" : "ws://") + server + "/api")
+                        .setServerName(server)
+                        .createSocket((tcp2wsServer.tls ? "wss://" : "ws://") + host + "/api")
                         .addListener(new WebSocketAdapter() {
                             public void onBinaryMessage(WebSocket websocket, byte[] binary) {
                                 sendToClient(binary);
@@ -153,6 +159,7 @@ public class ProxyHandler implements Runnable {
                         })
                         .addExtension("permessage-deflate")
                         .addProtocol("binary")
+                        .addHeader("Host", server)
                         .addHeader("User-Agent", tcp2wsServer.userAgent)
                         .addHeader("Conn-Hash", tcp2wsServer.connHash)
                         .connect();
@@ -162,7 +169,7 @@ public class ProxyHandler implements Runnable {
                         count_520++;
                     else {
                         System.out.println(server);
-                        e.printStackTrace();
+                        e.fillInStackTrace();
                         break;
                     }
                 }
@@ -217,7 +224,7 @@ public class ProxyHandler implements Runnable {
                     break;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            e.fillInStackTrace();
         }
     }
 
@@ -272,7 +279,7 @@ public class ProxyHandler implements Runnable {
             outgoingDecryptCipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(Arrays.copyOfRange(buffer, 8, 40), "AES"), new IvParameterSpec(Arrays.copyOfRange(buffer, 40, 56)));
             decrypted = outgoingDecryptCipher.update(buffer);
         } catch (Exception e) {
-            e.printStackTrace();
+            e.fillInStackTrace();
         }
         isHandshake = Arrays.equals(Arrays.copyOfRange(decrypted, 65, 73), emptyBytes);
         m_ServerSocket.sendBinary(buffer);
@@ -292,7 +299,7 @@ public class ProxyHandler implements Runnable {
                 return 0;
             } catch (IOException e) {
                 if (!(e.getMessage().contains("Socket Closed") | e.getMessage().contains("socket closed") | e.getMessage().contains("Connection reset")))
-                    e.printStackTrace();
+                    e.fillInStackTrace();
                 close();    //	Close the server on this exception
                 return -1;
             }
