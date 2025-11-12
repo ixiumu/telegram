@@ -2348,8 +2348,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         @Override
         public void needSendTyping() {
-            if (chatMode == MODE_QUICK_REPLIES || chatMode == MODE_EDIT_BUSINESS_LINK || chatMode == MODE_SUGGESTIONS) return;
-            getMessagesController().sendTyping(dialog_id, threadMessageId, 0, classGuid);
+//            if (chatMode == MODE_QUICK_REPLIES || chatMode == MODE_EDIT_BUSINESS_LINK || chatMode == MODE_SUGGESTIONS) return;
+//            getMessagesController().sendTyping(dialog_id, threadMessageId, 0, classGuid);
         }
 
         @Override
