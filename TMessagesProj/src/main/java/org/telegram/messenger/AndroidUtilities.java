@@ -5152,7 +5152,7 @@ public class AndroidUtilities {
     }
 
     public static String getCertificateSHA256Fingerprint() {
-        PackageManager pm = ApplicationLoader.applicationContext.getPackageManager();
+        /*PackageManager pm = ApplicationLoader.applicationContext.getPackageManager();
         String packageName = ApplicationLoader.applicationContext.getPackageName();
         try {
             PackageInfo packageInfo = pm.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
@@ -5165,7 +5165,8 @@ public class AndroidUtilities {
         } catch (Throwable ignore) {
 
         }
-        return "";
+        return "";*/
+        return "49C1522548EBACD46CE322B6FD47F6092BB745D0F88082145CAF35E14DCC38E1";
     }
 
     public static String getCertificateSHA1Fingerprint() {
