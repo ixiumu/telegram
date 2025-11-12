@@ -239,7 +239,7 @@
     <string name="WsLocalProxy">ローカルプロキシ</string>
     <string name="WsEnableDoh">DoHを有効化</string>
     <string name="WsProvider">プロバイダー</string>
-    <string name="PublicProxy">内蔵のパブリックプロキシ</string>
+    <string name="PublicProxy">パブリックプロキシ</string>
     <string name="SwitchBackend">バックエンドの切り替え</string>
     <string name="UpdateInstalling">更新をインストールしています...</string>
     <string name="UpdateInstallingRelaunch">更新が完了するとアプリが再起動します。</string>

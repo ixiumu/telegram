@@ -30,25 +30,25 @@ import top.qwq2333.nullgram.utils.Log
 import java.net.ServerSocket
 
 object WebSocketHelper {
-    const val proxyServer = "ck2ut7v3g5zudnjw.top"
+    const val proxyServer = "ck2ut7v3g5zudnjw.top#affine.pro"
 
     private var socksPort = -1
     private var tcp2wsStarted = false
     private var tcp2wsServer: tcp2wsServer? = null
 
-    private val userAgent = "Nullgram ${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})"
-    private val connHash = "381d52f35f552e10ad1701445dba9cd14acb7e43"
+//    private const val USER_AGENT = "Telegram ${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})"
+    private const val CONN_HASH = "381d52f35f552e10ad1701445dba9cd14acb7e43"
 
-    enum class WsProvider(val num: Int, var host: String) {
-        Nullgram(0, "ck2ut7v3g5zudnjw.top"),
-        Custom(2, ConfigManager.getStringOrDefault(Defines.wsServerHost, "")!!),
+    enum class WsProvider(val num: Int, var host: String, var userAgent: String) {
+        PublicProxy(0, proxyServer, "Nullgram ${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})"),
+        Custom(2, ConfigManager.getStringOrDefault(Defines.wsServerHost, "")!!, "Telegram ${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})"),
     }
 
     @JvmStatic
-    var currentProvider = when (ConfigManager.getIntOrDefault(Defines.wsBuiltInProxyBackend, WsProvider.Nullgram.num)) {
-        WsProvider.Nullgram.num -> WsProvider.Nullgram
+    var currentProvider = when (ConfigManager.getIntOrDefault(Defines.wsBuiltInProxyBackend, WsProvider.PublicProxy.num)) {
+        WsProvider.PublicProxy.num -> WsProvider.PublicProxy
         WsProvider.Custom.num -> WsProvider.Custom
-        else -> WsProvider.Nullgram
+        else -> WsProvider.PublicProxy
     }
         set(value) {
             if (value == WsProvider.Custom) {
@@ -63,7 +63,7 @@ object WebSocketHelper {
         val names = ArrayList<String>()
         val types = ArrayList<WsProvider>()
         names.add("Nullgram")
-        types.add(WsProvider.Nullgram)
+        types.add(WsProvider.PublicProxy)
         names.add(LocaleController.getString("AutoDownloadCustom", R.string.AutoDownloadCustom))
         types.add(WsProvider.Custom)
         return Pair(names, types)
@@ -94,8 +94,8 @@ object WebSocketHelper {
             try {
                 tcp2wsServer!!.setCdnDomain(currentProvider.host)
                     .setTls(wsEnableTLS)
-                    .setUserAgent((System.getProperty("http.agent") ?: "") + " " + userAgent)
-                    .setConnHash(connHash)
+                    .setUserAgent((System.getProperty("http.agent") ?: "") + " " + currentProvider.userAgent)
+                    .setConnHash(CONN_HASH)
             } catch (e: Exception) {
                 Log.e(e)
             }
@@ -114,16 +114,16 @@ object WebSocketHelper {
                 socket.close()
             }
             if (!tcp2wsStarted) {
-                Log.i("useragent: ${System.getProperty("http.agent")} $userAgent")
+                Log.i("userAgent: ${System.getProperty("http.agent")} ${currentProvider.userAgent}")
                 tcp2wsServer = tcp2wsServer().setCdnDomain(currentProvider.host)
                     .setTls(wsEnableTLS)
-                    .setUserAgent((System.getProperty("http.agent") ?: "") + " " + userAgent)
-                    .setConnHash(connHash)
+                    .setUserAgent((System.getProperty("http.agent") ?: "") + " " + currentProvider.userAgent)
+                    .setConnHash(CONN_HASH)
                 tcp2wsServer!!.start(socksPort)
                 tcp2wsStarted = true
             }
-            Log.d("tcp2ws started on port " + socksPort)
-            Log.d("serverHost: " + currentProvider.host + " tls: " + wsEnableTLS)
+            Log.d("tcp2ws started on port $socksPort")
+            Log.d("serverHost: ${currentProvider.host} tls: $wsEnableTLS")
             socksPort
         } catch (e: Exception) {
             Log.e(e)

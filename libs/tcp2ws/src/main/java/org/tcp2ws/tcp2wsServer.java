@@ -44,7 +44,7 @@ public class tcp2wsServer {
         mServerList.put(19, "test_aurora." + mServer);
 
         try {
-            //DC1
+            //DC1 US
             HostMaps.put("149.154.175.5", "pluto." + mServer);
             HostMaps.put("149.154.175.50", "pluto." + mServer);
             HostMaps.put("149.154.175.51", "pluto." + mServer);
@@ -55,7 +55,7 @@ public class tcp2wsServer {
             HostMaps.put("149.154.175.59", "pluto." + mServer);
             HostMaps.put(InetAddress.getByName("2001:b28:f23d:f001:0000:0000:0000:000a").getHostAddress(), "pluto." + mServer);
             HostMaps.put(InetAddress.getByName("2001:b28:f23d:f001:0000:0000:0000:000d").getHostAddress(), "pluto." + mServer);
-            //DC2
+            //DC2 NLD
             HostMaps.put("95.161.76.100", "venus." + mServer);
             HostMaps.put("111.62.91.", "venus." + mServer);
             HostMaps.put("149.154.161.144", "venus." + mServer);
@@ -71,11 +71,11 @@ public class tcp2wsServer {
             HostMaps.put(InetAddress.getByName("2001:67c:4e8:f002:0000:0000:0000:000a").getHostAddress(), "venus." + mServer);
             HostMaps.put(InetAddress.getByName("2001:67c:4e8:f002:0000:0000:0000:000b").getHostAddress(), "venus." + mServer);
             HostMaps.put(InetAddress.getByName("2001:67c:4e8:f002:0000:0000:0000:000d").getHostAddress(), "venus." + mServer);
-            //DC3
+            //DC3 US
             HostMaps.put("149.154.175.100", "aurora." + mServer);
             HostMaps.put(InetAddress.getByName("2001:b28:f23d:f003:0000:0000:0000:000a").getHostAddress(), "aurora." + mServer);
             HostMaps.put(InetAddress.getByName("2001:b28:f23d:f003:0000:0000:0000:000d").getHostAddress(), "aurora." + mServer);
-            //DC4
+            //DC4 NLD
             HostMaps.put("5.28.195.", "vesta." + mServer);
             HostMaps.put("91.108.4.", "vesta." + mServer);
             HostMaps.put("149.154.164.", "vesta." + mServer);
@@ -88,7 +88,7 @@ public class tcp2wsServer {
             HostMaps.put(InetAddress.getByName("2001:67c:4e8:f004:0000:0000:0000:000a").getHostAddress(), "vesta." + mServer);
             HostMaps.put(InetAddress.getByName("2001:67c:4e8:f004:0000:0000:0000:000d").getHostAddress(), "vesta." + mServer);
             HostMaps.put(InetAddress.getByName("2001:67c:4e8:f004:0000:0000:0000:000b").getHostAddress(), "vesta." + mServer);
-            //DC5
+            //DC5 SGP
             HostMaps.put("91.108.56.", "flora." + mServer);
             HostMaps.put("149.154.171.5", "flora." + mServer);
             HostMaps.put(InetAddress.getByName("2001:b28:f23f:f005:0000:0000:0000:000a").getHostAddress(), "flora." + mServer);

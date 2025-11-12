@@ -239,7 +239,7 @@
     <string name="WsLocalProxy">本地代理</string>
     <string name="WsEnableDoh">啟用 DoH (DNS over HTTPS)</string>
     <string name="WsProvider">供應商</string>
-    <string name="PublicProxy">內建公共代理</string>
+    <string name="PublicProxy">公共代理</string>
     <string name="SwitchBackend">切換伺服器</string>
     <string name="UpdateInstalling">正在安裝更新…</string>
     <string name="UpdateInstallingRelaunch">更新完成後，應用程式將重新啟動。</string>

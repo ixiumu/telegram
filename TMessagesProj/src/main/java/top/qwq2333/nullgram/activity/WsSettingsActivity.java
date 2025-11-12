@@ -58,12 +58,9 @@ public class WsSettingsActivity extends BaseActivity {
     private int providerRow;
     private int enableTLSRow;
     private int descriptionRow;
-    private ActionBarMenuItem helpItem;
-    private final SharedConfig.ProxyInfo currentProxyInfo;
 
     public WsSettingsActivity(SharedConfig.ProxyInfo proxyInfo) {
         super();
-        currentProxyInfo = proxyInfo;
     }
 
     @Override
@@ -97,7 +94,7 @@ public class WsSettingsActivity extends BaseActivity {
                             }
                         };
                         editText.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
-                        editText.setText("");
+                        editText.setText(WsProvider.Custom.getHost());
                         editText.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
                         editText.setHintText(LocaleController.getString("WsProvider", R.string.WsProvider));
                         editText.setHeaderHintColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader, resourcesProvider));
@@ -157,7 +154,7 @@ public class WsSettingsActivity extends BaseActivity {
 
     @Override
     protected String getActionBarTitle() {
-        return currentProxyInfo.address;
+        return LocaleController.getString("PublicProxy", R.string.PublicProxy);
     }
 
     @Override
@@ -165,7 +162,7 @@ public class WsSettingsActivity extends BaseActivity {
         View view = super.createView(context);
 
         ActionBarMenu menu = actionBar.createMenu();
-        helpItem = menu.addItem(0, R.drawable.msg_emoji_question);
+        ActionBarMenuItem helpItem = menu.addItem(0, R.drawable.msg_emoji_question);
         helpItem.setContentDescription(LocaleController.getString("WsGetHelp", R.string.WsGetHelp));
         helpItem.setVisibility(View.VISIBLE);
         helpItem.setTag(null);
@@ -173,7 +170,7 @@ public class WsSettingsActivity extends BaseActivity {
             BulletinFactory bulletinFactory = BulletinFactory.of(this);
             bulletinFactory.createSimpleBulletin(R.raw.fire_on, LocaleController.getString("WsGetHelp", R.string.WsGetHelp),
                 LocaleController.getString("LearnMore", R.string.LearnMore), () -> Browser.openUrl(getParentActivity(),
-                    "https://github.com/qwq233/Nullgram/blob/master/docs/wsproxy/README.md")).show();
+                    "https://github.com/ixiumu/Nullgram/blob/master/docs/wsproxy/README.md")).show();
         });
 
         return view;
@@ -207,14 +204,8 @@ public class WsSettingsActivity extends BaseActivity {
                     TextSettingsCell textCell = (TextSettingsCell) holder.itemView;
                     textCell.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
                     if (position == providerRow) {
-                        String value;
                         Log.d("isCustomProvider: " + WebSocketHelper.getCurrentProvider().equals(WsProvider.Custom));
-                        if (WebSocketHelper.getCurrentProvider().equals(WsProvider.Custom)) {
-                            value = WebSocketHelper.getCurrentProvider().getHost();
-                        } else {
-                            value = WebSocketHelper.getCurrentProvider().name();
-                        }
-                        textCell.setTextAndValue(LocaleController.getString("WsProvider", R.string.WsProvider), value, partial, true);
+                        textCell.setTextAndValue(LocaleController.getString("WsProvider", R.string.WsProvider), WebSocketHelper.getCurrentProvider().getHost(), partial, true);
                     }
                     break;
                 }
@@ -235,7 +226,7 @@ public class WsSettingsActivity extends BaseActivity {
                 case TYPE_INFO_PRIVACY: {
                     TextInfoPrivacyCell cell = (TextInfoPrivacyCell) holder.itemView;
                     String value = null;
-                    if (WebSocketHelper.getCurrentProvider().equals(WsProvider.Nullgram)) {
+                    if (WebSocketHelper.getCurrentProvider().equals(WsProvider.PublicProxy)) {
                         value = LocaleController.getString("NullgramWsDescription", R.string.NullgramWsDescription);
                     } else if (WebSocketHelper.getCurrentProvider().equals(WsProvider.Custom)) {
                         value = LocaleController.getString("WsCustomDescription", R.string.WsCustomDescription);
