@@ -588,7 +588,8 @@ public class UserConfig extends BaseController {
         if (user == null) {
             return false;
         }
-        return user.premium;
+//        return user.premium;
+        return true;
     }
 
     public Long getEmojiStatus() {

@@ -4094,7 +4094,8 @@ public class StoriesController {
         if (user == null) {
             return false;
         }
-        return user.premium;
+//        return user.premium;
+        return true;
     }
 
     final Runnable sortStoriesRunnable;
