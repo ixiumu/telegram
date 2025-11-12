@@ -1041,16 +1041,17 @@ public class SharedConfig {
     }
 
     public static boolean setNewAppVersionAvailable(TLRPC.TL_help_appUpdate update) {
-        if (update == null) {
-            pendingAppUpdate = null;
-            pendingAppUpdateBuildVersion = 0;
-            saveConfig();
-            return false;
-        }
-        pendingAppUpdate = update;
-        pendingAppUpdateBuildVersion = BuildConfig.VERSION_CODE;
-        saveConfig();
-        return true;
+//        if (update == null) {
+//            pendingAppUpdate = null;
+//            pendingAppUpdateBuildVersion = 0;
+//            saveConfig();
+//            return false;
+//        }
+//        pendingAppUpdate = update;
+//        pendingAppUpdateBuildVersion = BuildConfig.VERSION_CODE;
+//        saveConfig();
+//        return true;
+        return false;
     }
 
     // returns a >= b

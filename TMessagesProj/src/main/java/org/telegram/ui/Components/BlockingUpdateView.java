@@ -288,7 +288,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
     }
 
     public void show(int account, TLRPC.TL_help_appUpdate update, boolean check) {
-        pressCount = 0;
+        /*pressCount = 0;
         appUpdate = update;
         accountNum = account;
         if (update.document instanceof TLRPC.TL_document) {
@@ -320,7 +320,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
                 }
                 return Unit.INSTANCE;
             });
-        }
+        }*/
     }
 
     Drawable gradientDrawableTop = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[] {Theme.getColor(Theme.key_windowBackgroundWhite), Color.TRANSPARENT });

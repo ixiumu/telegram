@@ -6067,7 +6067,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
     @SuppressLint("NotifyDataSetChanged")
     public void checkAppUpdate(boolean force) {
-        if (!force && ConfigManager.getIntOrDefault(Defines.updateChannel, Defines.stableChannel) == Defines.disableAutoUpdate) {
+        /*if (!force && ConfigManager.getIntOrDefault(Defines.updateChannel, Defines.stableChannel) == Defines.disableAutoUpdate) {
             return;
         }
         if (!force && System.currentTimeMillis() < ConfigManager.getLongOrDefault(Defines.lastCheckUpdateTime, 0L) + 1000L * 60 * 60) {
@@ -6111,7 +6111,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.appUpdateAvailable);
             });
             return Unit.INSTANCE;
-        });
+        });*/
     }
 
     public Dialog showAlertDialog(AlertDialog.Builder builder) {
