@@ -7,33 +7,52 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class tcp2wsServer {
 
     protected int mPort;
     protected boolean mStopping = false;
     protected String mServer = "";
+    protected String mNat64Prefix = "";
     protected static boolean tls = false;
     protected static String userAgent = "tcp2ws/1.0.0";
     protected static String connHash = "";
     protected static String host = "";
+    protected static boolean isNet64 = false;
 
     static Map<String, String> HostMaps = new HashMap<>();
     protected static Map<Integer, String> mServerList = new HashMap<>();
-    static final Map<String, HashSet<WebSocket>> inactiveWs = new HashMap<>();
+    static final Map<String, HashSet<WebSocket>> inactiveWs = new ConcurrentHashMap<>();
+    public static final Map<WebSocket, DataReceiver> activeWsHandlers = new ConcurrentHashMap<>();
+    private final Set<Runnable> activeHandlers = Collections.synchronizedSet(new HashSet<>());
 
-    public tcp2wsServer setCdnDomain(String config) {
-        if (config.contains("#")) {
-            mServer = config.split("#")[0];
-            host = config.split("#")[1];
+    public tcp2wsServer setServer(String config) {
+        isNet64 = config.chars()
+            .filter(c -> c == ':')
+            .count() > 3;
+
+        if (!isNet64) {
+            if (config.contains("#")) {
+                mServer = config.split("#")[0];
+                host = config.split("#")[1];
+            } else {
+                mServer = config;
+                host = "";
+            }
+            setCdnDomain();
         } else {
-            mServer = config;
-            host = "";
+            mNat64Prefix = config;
         }
+        return this;
+    }
 
+    public void setCdnDomain() {
         mServerList.put(1, "pluto." + mServer);
         mServerList.put(2, "venus." + mServer);
         mServerList.put(3, "aurora." + mServer);
@@ -114,7 +133,6 @@ public class tcp2wsServer {
         inactiveWs.put(tcp2wsServer.mServerList.get(18), new HashSet<>());
         inactiveWs.put(tcp2wsServer.mServerList.get(19), new HashSet<>());
 
-        return this;
     }
 
     public tcp2wsServer setUserAgent(String userAgent) {
@@ -137,7 +155,7 @@ public class tcp2wsServer {
     }
 
     public synchronized void start(int listenPort) {
-        if (HostMaps.isEmpty()) {
+        if (!isNet64 && HostMaps.isEmpty()) {
             throw new RuntimeException("cdn domain not set");
         }
         mStopping = false;
@@ -147,6 +165,13 @@ public class tcp2wsServer {
 
     public synchronized void stop() {
         mStopping = true;
+        for (Object handler : new HashSet<>(activeHandlers)) {
+            if (handler instanceof Socks4Nat64ProxyHandler) {
+                ((Socks4Nat64ProxyHandler) handler).close();
+            } else if (handler instanceof ProxyHandler) {
+                ((ProxyHandler) handler).close();
+            }
+        }
     }
 
     private class ServerProcess implements Runnable {
@@ -185,7 +210,17 @@ public class tcp2wsServer {
             try {
                 final Socket clientSocket = listenSocket.accept();
                 clientSocket.setSoTimeout(SocksConstants.DEFAULT_SERVER_TIMEOUT);
-                new Thread(new ProxyHandler(clientSocket)).start();
+
+                final Runnable handler;
+
+                if (isNet64) {
+                    handler = new Socks4Nat64ProxyHandler(clientSocket, mNat64Prefix, activeHandlers);
+                } else {
+                    handler = new ProxyHandler(clientSocket, activeHandlers);
+                }
+
+                new Thread(handler).start();
+
             } catch (InterruptedIOException e) {
                 //	This exception is thrown when accept timeout is expired
             } catch (Exception e) {

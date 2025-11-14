@@ -1,10 +1,8 @@
 package org.tcp2ws;
 
 import com.neovisionaries.ws.client.WebSocket;
-import com.neovisionaries.ws.client.WebSocketAdapter;
 import com.neovisionaries.ws.client.WebSocketException;
 import com.neovisionaries.ws.client.WebSocketFactory;
-import com.neovisionaries.ws.client.WebSocketFrame;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,32 +13,35 @@ import java.net.SocketException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-@SuppressWarnings("SynchronizeOnNonFinalField")
-public class ProxyHandler implements Runnable {
+public class ProxyHandler implements Runnable, DataReceiver {
 
     private InputStream m_ClientInput = null;
     private OutputStream m_ClientOutput = null;
-    private Object m_lock;
+
+    private final Object LOCK = new Object();
+
     private String mServer;
 
     Socket m_ClientSocket;
     WebSocket m_ServerSocket = null;
 
     byte[] m_Buffer = new byte[SocksConstants.DEFAULT_BUF_SIZE];
-    final static byte[] emptyBytes = new byte[8];
+    private final static byte[] emptyBytes = new byte[8];
 
-    Cipher outgoingDecryptCipher;
+    private final Set<Runnable> externalActiveSet;
 
-    boolean isHandshake = false;
-
-    public ProxyHandler(Socket clientSocket) {
-        m_lock = this;
+    public ProxyHandler(Socket clientSocket, Set<Runnable> activeSet) {
         m_ClientSocket = clientSocket;
+
+        this.externalActiveSet = activeSet;
+        this.externalActiveSet.add(this);
+
         try {
             m_ClientSocket.setSoTimeout(SocksConstants.DEFAULT_PROXY_TIMEOUT);
         } catch (SocketException e) {
@@ -48,20 +49,19 @@ public class ProxyHandler implements Runnable {
         }
     }
 
-    public void setLock(Object lock) {
-        this.m_lock = lock;
-    }
-
+    @Override
     public void run() {
-        setLock(this);
-
         if (prepareClient()) {
             processRelay();
             close();
         }
+
+        if (externalActiveSet != null) {
+            externalActiveSet.remove(this);
+        }
     }
 
-    public void close() {
+    public synchronized void close() {
         try {
             if (m_ClientOutput != null) {
                 m_ClientOutput.flush();
@@ -80,14 +80,28 @@ public class ProxyHandler implements Runnable {
         }
 
         if (m_ServerSocket != null && m_ServerSocket.isOpen()) {
-            HashSet<WebSocket> set = tcp2wsServer.inactiveWs.get(mServer);
-            if (set != null) {
+            tcp2wsServer.activeWsHandlers.remove(m_ServerSocket);
+
+            HashSet<WebSocket> set = tcp2wsServer.inactiveWs.computeIfAbsent(mServer, k -> new HashSet<>());
+            synchronized (set) {
                 set.add(m_ServerSocket);
             }
         }
 
         m_ServerSocket = null;
         m_ClientSocket = null;
+    }
+
+    @Override
+    public void receiveFromServer(byte[] data) {
+        sendToClient(data, data.length);
+    }
+
+    @Override
+    public void handleServerClose(WebSocket websocket, boolean closedByServer) {
+        if (closedByServer) {
+            close();
+        }
     }
 
     public void sendToClient(byte[] buffer) {
@@ -101,6 +115,7 @@ public class ProxyHandler implements Runnable {
                 m_ClientOutput.flush();
             } catch (IOException e) {
                 e.printStackTrace();
+                close();
             }
         }
     }
@@ -115,14 +130,16 @@ public class ProxyHandler implements Runnable {
     }
 
     protected void prepareServer() throws IOException {
-        synchronized (m_lock) {
+        synchronized (LOCK) {
             HashSet<WebSocket> set = tcp2wsServer.inactiveWs.get(mServer);
+
             if (set != null) {
                 Iterator<WebSocket> iterator = set.iterator();
                 while (iterator.hasNext()) {
                     WebSocket _m_ServerSocket = iterator.next();
                     if (_m_ServerSocket.isOpen()) {
                         m_ServerSocket = _m_ServerSocket;
+                        tcp2wsServer.activeWsHandlers.put(m_ServerSocket, this);
                         return;
                     } else {
                         iterator.remove();
@@ -130,6 +147,7 @@ public class ProxyHandler implements Runnable {
                     }
                 }
             }
+
             int count_520 = 0;
             while (count_520 < 10) {
                 try {
@@ -137,24 +155,16 @@ public class ProxyHandler implements Runnable {
                         .setConnectionTimeout(5000)
                         .setCDN(tcp2wsServer.host)
                         .createSocket((tcp2wsServer.tls ? "wss://" : "ws://") + mServer + "/api")
-                        .addListener(new WebSocketAdapter() {
-                            public void onBinaryMessage(WebSocket websocket, byte[] binary) {
-                                sendToClient(binary);
-                            }
+                        .addListener(GlobalWebSocketListener.INSTANCE);
 
-                            public void onDisconnected(WebSocket websocket, WebSocketFrame serverCloseFrame, WebSocketFrame clientCloseFrame, boolean closedByServer) {
-                                if (closedByServer) {
-                                    System.out.println(mServer + "," + clientCloseFrame.getCloseCode() + clientCloseFrame.getCloseReason());
-                                    m_ServerSocket.sendClose();
-                                    close();
-                                }
-                            }
-                        })
-                        .addExtension("permessage-deflate")
+                    m_ServerSocket.addExtension("permessage-deflate")
                         .addProtocol("binary")
                         .addHeader("User-Agent", tcp2wsServer.userAgent)
                         .addHeader("Conn-Hash", tcp2wsServer.connHash)
                         .connect();
+
+                    tcp2wsServer.activeWsHandlers.put(m_ServerSocket, this);
+
                     break;
                 } catch (WebSocketException e) {
                     if (e.getMessage().contains("520"))
@@ -229,7 +239,7 @@ public class ProxyHandler implements Runnable {
                 Thread.yield();
                 continue;
             }
-            return (byte) b; // return loaded byte
+            return (byte) b;
         }
         throw new Exception("Interrupted Reading GetByteFromClient()");
     }
@@ -240,9 +250,6 @@ public class ProxyHandler implements Runnable {
         boolean isActive = true;
 
         while (isActive) {
-
-            //---> Check for client data <---
-
             int dlen = checkClientData();
 
             if (dlen < 0) {
@@ -267,20 +274,19 @@ public class ProxyHandler implements Runnable {
         byte[] decrypted = new byte[]{};
 
         try {
-            outgoingDecryptCipher = Cipher.getInstance("AES/CTR/NoPadding");
+            Cipher outgoingDecryptCipher = Cipher.getInstance("AES/CTR/NoPadding");
             outgoingDecryptCipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(Arrays.copyOfRange(buffer, 8, 40), "AES"), new IvParameterSpec(Arrays.copyOfRange(buffer, 40, 56)));
             decrypted = outgoingDecryptCipher.update(buffer);
         } catch (Exception e) {
             e.fillInStackTrace();
         }
-        isHandshake = Arrays.equals(Arrays.copyOfRange(decrypted, 65, 73), emptyBytes);
+        boolean isHandshake = Arrays.equals(Arrays.copyOfRange(decrypted, 65, 73), emptyBytes);
         m_ServerSocket.sendBinary(buffer);
         Thread.yield();
     }
 
     public int checkClientData() {
-        synchronized (m_lock) {
-            //	The client side is not opened.
+        synchronized (LOCK) {
             if (m_ClientInput == null) return -1;
 
             int dlen;
@@ -290,9 +296,7 @@ public class ProxyHandler implements Runnable {
             } catch (InterruptedIOException e) {
                 return 0;
             } catch (IOException e) {
-                if (!(e.getMessage().contains("Socket Closed") | e.getMessage().contains("socket closed") | e.getMessage().contains("Connection reset")))
-                    e.fillInStackTrace();
-                close();    //	Close the server on this exception
+                close();
                 return -1;
             }
 
