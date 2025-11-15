@@ -4090,12 +4090,12 @@ public class StoriesController {
     };
 
     private boolean isPremium(long uid) {
+        if (Config.unlockPremium) return true;
         TLRPC.User user = MessagesController.getInstance(currentAccount).getUser(uid);
         if (user == null) {
             return false;
         }
-//        return user.premium;
-        return true;
+        return user.premium;
     }
 
     final Runnable sortStoriesRunnable;

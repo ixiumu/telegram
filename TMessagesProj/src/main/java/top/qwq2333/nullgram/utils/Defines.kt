@@ -81,6 +81,7 @@ object Defines {
     @BooleanConfig const val disableVibration = "disableVibration"
     const val aospEmojiFont = "NotoColorEmoji.ttf"
     @BooleanConfig const val hidePremiumStickerAnim = "hidePremiumStickerAnim"
+    @BooleanConfig const val unlockPremium = "unlockPremium"
     @BooleanConfig const val fastSpeedUpload = "fastSpeedUpload"
     @BooleanConfig const val showTabsOnForward = "showTabsOnForward"
     @BooleanConfig(true) const val disableStickersAutoReorder = "disableStickersAutoReorder"

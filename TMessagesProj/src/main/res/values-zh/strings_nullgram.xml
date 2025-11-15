@@ -199,6 +199,7 @@
     <string name="PhotoCopied">图片已复制</string>
     <string name="CopyPhoto">复制图片</string>
     <string name="hidePremiumStickerAnim">隐藏会员贴图动画</string>
+    <string name="unlockPremium">解锁会员</string>
     <string name="premium">Premium</string>
     <string name="fastSpeedUpload">更快的上传速度</string>
     <string name="showTabsOnForward">转发时显示标签</string>

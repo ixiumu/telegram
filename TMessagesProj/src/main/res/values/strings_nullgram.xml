@@ -203,6 +203,7 @@
     <string name="PhotoCopied">Photo Copied</string>
     <string name="CopyPhoto">Copy Photo</string>
     <string name="hidePremiumStickerAnim">Hide Premium Sticker Animation</string>
+    <string name="unlockPremium">Unlock Premium</string>
     <string name="premium">Premium</string>
     <string name="fastSpeedUpload">Fasten upload speed</string>
     <string name="showTabsOnForward">Show Tabs On Forward</string>

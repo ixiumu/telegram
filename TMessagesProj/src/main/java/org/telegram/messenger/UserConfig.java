@@ -32,6 +32,7 @@ import org.telegram.tgnet.tl.TL_account;
 
 import java.util.Arrays;
 
+import top.qwq2333.gen.Config;
 import top.qwq2333.nullgram.helpers.PasscodeHelper;
 import top.qwq2333.nullgram.utils.AnalyticsUtils;
 
@@ -584,12 +585,12 @@ public class UserConfig extends BaseController {
     }
 
     public boolean isPremium() {
+        if (Config.unlockPremium) return true;
         TLRPC.User user = currentUser;
         if (user == null) {
             return false;
         }
-//        return user.premium;
-        return true;
+        return user.premium;
     }
 
     public Long getEmojiStatus() {

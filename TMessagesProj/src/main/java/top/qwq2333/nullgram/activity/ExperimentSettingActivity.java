@@ -78,6 +78,7 @@ public class ExperimentSettingActivity extends BaseActivity {
 
     private int premiumRow;
     private int hidePremiumStickerAnimRow;
+    private int unlockPremiumRow;
     private int fastSpeedUploadRow;
     private int modifyDownloadSpeedRow;
     private int premium2Row;
@@ -161,6 +162,11 @@ public class ExperimentSettingActivity extends BaseActivity {
             Config.toggleHidePremiumStickerAnim();
             if (view instanceof TextCheckCell) {
                 ((TextCheckCell) view).setChecked(Config.hidePremiumStickerAnim);
+            }
+        } else if (position == unlockPremiumRow) {
+            Config.toggleUnlockPremium();
+            if (view instanceof TextCheckCell) {
+                ((TextCheckCell) view).setChecked(Config.unlockPremium);
             }
         } else if (position == fastSpeedUploadRow) {
             Config.toggleFastSpeedUpload();
@@ -273,6 +279,7 @@ public class ExperimentSettingActivity extends BaseActivity {
 
         if (Config.showHiddenSettings) {
             premiumRow = addRow();
+            unlockPremiumRow = addRow("unlockPremium");
             hidePremiumStickerAnimRow = addRow("hidePremiumStickerAnim");
             fastSpeedUploadRow = addRow("fastSpeedUpload");
             modifyDownloadSpeedRow = addRow("modifyDownloadSpeed");
@@ -376,6 +383,9 @@ public class ExperimentSettingActivity extends BaseActivity {
                     } else if (position == hidePremiumStickerAnimRow) {
                         textCell.setTextAndCheck(LocaleController.getString("hidePremiumStickerAnim", R.string.hidePremiumStickerAnim),
                             Config.hidePremiumStickerAnim, true);
+                    } else if (position == unlockPremiumRow) {
+                        textCell.setTextAndCheck(LocaleController.getString("unlockPremium", R.string.unlockPremium),
+                            Config.unlockPremium, true);
                     } else if (position == fastSpeedUploadRow) {
                         textCell.setTextAndCheck(LocaleController.getString("fastSpeedUpload", R.string.fastSpeedUpload), Config.fastSpeedUpload,
                             true);

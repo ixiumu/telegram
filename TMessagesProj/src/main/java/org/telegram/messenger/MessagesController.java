@@ -882,8 +882,8 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public boolean isPremiumUser(TLRPC.User currentUser) {
-//        return !premiumFeaturesBlocked() && currentUser.premium && !isSupportUser(currentUser);
-        return true;
+        if (Config.unlockPremium) return true;
+        return !premiumFeaturesBlocked() && currentUser.premium && !isSupportUser(currentUser);
     }
 
     public boolean didPressTranscribeButtonEnough() {

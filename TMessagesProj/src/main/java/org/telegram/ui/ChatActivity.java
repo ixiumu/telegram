@@ -2348,8 +2348,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         @Override
         public void needSendTyping() {
-//            if (chatMode == MODE_QUICK_REPLIES || chatMode == MODE_EDIT_BUSINESS_LINK || chatMode == MODE_SUGGESTIONS) return;
-//            getMessagesController().sendTyping(dialog_id, threadMessageId, 0, classGuid);
+            if (chatMode == MODE_QUICK_REPLIES || chatMode == MODE_EDIT_BUSINESS_LINK || chatMode == MODE_SUGGESTIONS) return;
+            getMessagesController().sendTyping(dialog_id, threadMessageId, 0, classGuid);
         }
 
         @Override
@@ -24928,8 +24928,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private Pattern sponsoredUrlPattern;
     private MessageObject botSponsoredMessage;
     private void addSponsoredMessages(boolean animated) {
-        /*if (sponsoredMessagesAdded || chatMode != 0 || !ChatObject.isChannel(currentChat) && !UserObject.isBot(currentUser) || !forwardEndReached[0] || getUserConfig().isPremium
-        () && getMessagesController().isSponsoredDisabled() || isReport()) {
+        if (sponsoredMessagesAdded || chatMode != 0 || !ChatObject.isChannel(currentChat) && !UserObject.isBot(currentUser) || !forwardEndReached[0] || getUserConfig().isPremium
+        () && getMessagesController().isSponsoredDisabled() || isReport() || Config.blockSponsorAds) {
             return;
         }
         MessagesController.SponsoredMessagesInfo res = getMessagesController().getSponsoredMessages(dialog_id);
@@ -24978,7 +24978,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 notPushedSponsoredMessages.clear();
             }
             processNewMessages(res.messages, false);
-        }*/
+        }
     }
 
     public void removeFromSponsored(MessageObject message) {
