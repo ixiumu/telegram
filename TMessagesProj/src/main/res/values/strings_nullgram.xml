@@ -1,27 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (C) 2019-2024 qwq233 <qwq233@qwq2333.top>
-  ~ https://github.com/qwq233/Nullgram
-  ~
-  ~ This program is free software; you can redistribute it and/or
-  ~ modify it under the terms of the GNU General Public License
-  ~ as published by the Free Software Foundation; either version 2
-  ~ of the License, or (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License along with this software.
-  ~  If not, see
-  ~ <https://www.gnu.org/licenses/>
-  -->
-
 <resources>
-    <string name="NullgramName" translatable="false">Nullgram</string>
-    <string name="NullgramPushService">Nullgram Push Service</string>
-    <string name="NullSettings">Nullgram Settings</string>
+    <string name="appName" translatable="false">Cipher</string>
+    <string name="NullgramPushService">Cipher Push Service</string>
+    <string name="NullSettings">Cipher Settings</string>
     <string name="OfficialChannel">Official Channel</string>
     <string name="Chat">Chat</string>
     <string name="Experiment">Experiment</string>
@@ -46,7 +27,7 @@
     <string name="InvalidAccessToken">Invalid access token</string>
     <string name="QRLoginTitle">QR Login</string>
     <string name="QRLoginMessage">Scan QRCode with another device to login.</string>
-    <string name="NullgramVersion">Nullgram %1$s\nBased on TELEOFFICIAL %2$s</string>
+    <string name="NullgramVersion">Cipher %1$s\nBased on Telegram %2$s</string>
     <string name="RestrictionReason">Restriction reason</string>
     <string name="showBotAPIID">Show Bot API ID</string>
     <string name="hideGroupSticker">Hide Group Sticker Pack</string>
@@ -89,7 +70,7 @@
     <string name="AutoCheckUpdateSwitch">Automatic Update</string>
     <string name="AutoCheckUpdateStable">Stable</string>
     <string name="AutoCheckUpdatePreview">Preview (Unstable)</string>
-    <string name="AppUpdateNullgram">Update Nullgram</string>
+    <string name="AppUpdateNullgram">Update Cipher</string>
     <string name="VersionUpdateNoUpdate">No Update</string>
     <string name="DoNotRemindAgain">Don\'t remind again</string>
     <string name="FCTitle">About application updates</string>
@@ -106,7 +87,7 @@
     <string name="PrivacyNoticePhoneVisible">It is detected that your mobile phone number is visible to anyone, which may cause government-controlled hackers to find your true identity, please turn it off!</string>
     <string name="PrivacyNoticeAddByPhone">It is detected that you are not turned off the \"Allow find me through phone number\" Setting, which may cause a government-controlled hacker to find your true identity, please turn it off!</string>
     <string name="hidePhone">Hide phone number</string>
-    <string name="AppLinkNotVerifiedMessage">For Android 12 and newer, you need to manually add link to verified links in order to open t.me links in Nullgram</string>
+    <string name="AppLinkNotVerifiedMessage">For Android 12 and newer, you need to manually add link to verified links in order to open t.me links in Cipher</string>
     <string name="AppLinkNotVerifiedTitle">App links not verified</string>
     <string name="showExactNumber">Show Exact Number</string>
     <string name="disableJumpToNextChannel">Disable Jump to Next Channel</string>
@@ -184,7 +165,7 @@
     <string name="Passcode1">Passcode</string>
     <string name="UnknownSettings">Unknown Settings</string>
     <string name="PasscodeNeeded">You have to enable passcode lock first</string>
-    <string name="PasscodeShowInSettings">Show in Nullgram Settings</string>
+    <string name="PasscodeShowInSettings">Show in Cipher Settings</string>
     <string name="PasscodeShowInSettingsAbout">After hiding, you can **ONLY** open settings by link:</string>
     <string name="PasscodeSet">Set passcode</string>
     <string name="PasscodeEdit">Change passcode</string>
@@ -235,11 +216,11 @@
     <string name="disableSharePhoneWithContactByDefault">No Share Phone Number When Add Contact</string>
     <string name="disableStickersAutoReorder">Disable sticker packs auto-reorder</string>
     <string name="autoDisableBuiltInProxy">Auto Disable Built-In Proxy</string>
-    <string name="autoDisableBuiltInProxyDesc">It will automatically turn off the built-in proxy when Nullgram detected you turn on the VPN</string>
-    <string name="NullgramWsDescription">Connect to TELEOFFICIAL through WebSocket via Cloudflare.\nProvided by Nullgram</string>
+    <string name="autoDisableBuiltInProxyDesc">It will automatically turn off the built-in proxy when Cipher detected you turn on the VPN</string>
+    <string name="NullgramWsDescription">Connect to Telegram through WebSocket via Cloudflare.\nProvided by Nullgram</string>
     <string name="NekogramXWsDescription">Provided by Nekogram X</string>
     <string name="WsGetHelp">You can also deploy it easily by yourself!</string>
-    <string name="WsCustomDescription">Use custom domain to connect to TELEOFFICIAL through WebSocket via Cloudflare.</string>
+    <string name="WsCustomDescription">Use custom domain to connect to Telegram through WebSocket via Cloudflare.</string>
     <string name="WsEnableTls">Enable TLS</string>
     <string name="WsLocalProxy">Local proxy</string>
     <string name="WsEnableDoh">Enable DoH</string>
@@ -325,14 +306,14 @@
     <string name="HideStories">Hide Stories</string>
     <string name="storyStealthMode">Story Stealth mode</string>
     <string name="OneMoreThing">One More Thing</string>
-    <string name="NotOriginalNullgramInfo">It seems that you\'re using a fork of Nullgram.\nDo you also want to follow Nullgram\'s Channel?</string>
+    <string name="NotOriginalNullgramInfo">It seems that you\'re using a fork of Cipher.\nDo you also want to follow Cipher\'s Channel?</string>
     <string name="Official">Official</string>
     <string name="Before">Before...</string>
     <string name="Custom">Custom</string>
     <string name="MonoCode">Code</string>
     <string name="CreateCode">Create Code</string>
     <string name="CreateCodeLanguage">Language</string>
-    <string name="UnsupportedMediaNullgram">This message is not supported on your version of Nullgram. Update the app to view: https://t.me/NullgramClient</string>
+    <string name="UnsupportedMediaNullgram">This message is not supported on your version of Cipher. Update the app to view: https://t.me/NullgramClient</string>
     <string name="ignoreUserSpecifiedReplyColor">Ignore user-set reply color</string>
     <string name="ShowTitle">Show title</string>
     <string name="HideTitle">Hide title</string>

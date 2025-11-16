@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (C) 2019-2024 qwq233 <qwq233@qwq2333.top>
-  ~ https://github.com/qwq233/Nullgram
-  ~
-  ~ This program is free software; you can redistribute it and/or
-  ~ modify it under the terms of the GNU General Public License
-  ~ as published by the Free Software Foundation; either version 2
-  ~ of the License, or (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License along with this software.
-  ~  If not, see
-  ~ <https://www.gnu.org/licenses/>
-  -->
 <resources>
-    <string name="NullgramPushService">Nullgram 推送服务</string>
-    <string name="NullSettings">Nullgram 设置</string>
+    <string name="NullgramPushService">Cipher 推送服务</string>
+    <string name="NullSettings">插件设置</string>
     <string name="OfficialChannel">官方频道</string>
     <string name="Chat">聊天</string>
     <string name="Experiment">实验性功能</string>
@@ -43,7 +25,7 @@
     <string name="InvalidAccessToken">无效访问令牌</string>
     <string name="QRLoginTitle">二维码 登入</string>
     <string name="QRLoginMessage">用另一个设备扫描二维码登录。</string>
-    <string name="NullgramVersion">Nullgram %1$s\n基于 TELEOFFICIAL %2$s</string>
+    <string name="NullgramVersion">Cipher %1$s\n基于 Telegram %2$s</string>
     <string name="RestrictionReason">限制原因</string>
     <string name="showBotAPIID">显示Bot API ID</string>
     <string name="hideGroupSticker">隐藏群组贴纸包</string>

@@ -106,7 +106,7 @@ dependencies {
 }
 
 android {
-    defaultConfig.applicationId = "top.qwq2333.nullgram"
+    defaultConfig.applicationId = "com.android.cipher"
     namespace = "org.telegram.messenger"
 
     sourceSets.getByName("main") {
@@ -207,7 +207,8 @@ android {
         abi {
             isEnable = true
             reset()
-            include("arm64-v8a", "x86_64")
+            // include("arm64-v8a", "x86_64")
+            include("arm64-v8a")
         }
     }
 
@@ -221,7 +222,7 @@ android {
         outputs.all {
             val abi = this.filters.find { it.filterType == FilterConfiguration.FilterType.ABI.name }?.identifier
             val output = this as? com.android.build.gradle.internal.api.BaseVariantOutputImpl
-            val outputFileName = "Nullgram-${defaultConfig.versionName}-${abiName[abi]}.apk"
+            val outputFileName = "Cipher-${defaultConfig.versionName}-${abiName[abi]}.apk"
             output?.outputFileName = outputFileName
         }
     }

@@ -1,22 +1,3 @@
-<!--
-  ~ Copyright (C) 2019-2024 qwq233 <qwq233@qwq2333.top>
-  ~ https://github.com/qwq233/Nullgram
-  ~
-  ~ This program is free software; you can redistribute it and/or
-  ~ modify it under the terms of the GNU General Public License
-  ~ as published by the Free Software Foundation; either version 2
-  ~ of the License, or (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License along with this software.
-  ~  If not, see
-  ~ <https://www.gnu.org/licenses/>
-  -->
-
 <vector xmlns:aapt="http://schemas.android.com/aapt" xmlns:android="http://schemas.android.com/apk/res/android" android:height="28dp" android:viewportHeight="84" android:viewportWidth="84" android:width="28dp">
     <path android:fillType="evenOdd" android:pathData="M30.673,26.951L38.611,11.046C39.526,9.211 41.74,8.474 43.556,9.4C44.268,9.763 44.845,10.351 45.198,11.074L52.695,26.413C53.307,27.666 54.504,28.521 55.877,28.687L71.574,30.582C73.705,30.839 75.227,32.794 74.972,34.948C74.867,35.835 74.466,36.66 73.836,37.285L61.428,49.595C60.927,50.092 60.685,50.796 60.772,51.5L62.834,68.118C63.129,70.497 61.46,72.668 59.107,72.966C58.215,73.079 57.31,72.907 56.52,72.473L43.412,65.267C42.463,64.746 41.322,64.731 40.36,65.227L26.779,72.237C24.868,73.224 22.527,72.457 21.551,70.525C21.186,69.802 21.051,68.983 21.165,68.179L22.251,60.555C22.782,56.826 25.075,53.591 28.397,51.884L43.482,44.133C43.885,43.926 44.045,43.429 43.84,43.022C43.682,42.706 43.342,42.528 42.996,42.578L24.547,45.236C21.727,45.643 18.867,44.842 16.656,43.026L10.512,37.981C8.758,36.541 8.491,33.937 9.916,32.165C10.578,31.341 11.529,30.806 12.571,30.671L28.324,28.631C29.334,28.5 30.215,27.871 30.673,26.951Z" android:strokeColor="#00000000" android:strokeWidth="1">
         <aapt:attr name="android:fillColor">

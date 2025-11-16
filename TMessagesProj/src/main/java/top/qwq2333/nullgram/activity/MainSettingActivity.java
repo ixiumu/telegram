@@ -74,11 +74,9 @@ public class MainSettingActivity extends BaseActivity {
 
     private int aboutRow;
     private int channelRow;
-    private int websiteRow;
     private int sourceCodeRow;
     private int licenseRow;
     private int about2Row;
-    private int updateRow;
     private int passcodeRow;
     private int pressCount = 0;
     private Context context;
@@ -110,14 +108,10 @@ public class MainSettingActivity extends BaseActivity {
             presentFragment(new ExperimentSettingActivity(sensitiveEnabled, sensitiveCanChange));
         } else if (position == channelRow) {
             MessagesController.getInstance(currentAccount).openByUserName(LocaleController.getString("OfficialChannelName", R.string.OfficialChannelName), this, 1);
-        } else if (position == websiteRow) {
-            Browser.openUrl(getParentActivity(), "https://qwq2333.top");
         } else if (position == sourceCodeRow) {
             Browser.openUrl(getParentActivity(), "https://github.com/qwq233/Nullgram");
         } else if (position == licenseRow) {
             presentFragment(new LicenseActivity());
-        } else if (position == updateRow) {
-            Browser.openUrl(context, "tg://update");
         } else if (position == passcodeRow) {
             presentFragment(new PasscodeSettingActivity());
         }
@@ -231,12 +225,9 @@ public class MainSettingActivity extends BaseActivity {
 
         aboutRow = addRow();
         channelRow = addRow();
-        websiteRow = addRow();
         sourceCodeRow = addRow();
         licenseRow = addRow();
         about2Row = addRow();
-
-        updateRow = addRow();
 
         if (listAdapter != null) {
             listAdapter.notifyDataSetChanged();
@@ -276,15 +267,10 @@ public class MainSettingActivity extends BaseActivity {
                     TextSettingsCell textCell = (TextSettingsCell) holder.itemView;
                     if (position == channelRow) {
                         textCell.setTextAndValue(LocaleController.getString("OfficialChannel", R.string.OfficialChannel), "@" + LocaleController.getString("OfficialChannelName", R.string.OfficialChannelName), true);
-                    } else if (position == websiteRow) {
-                        textCell.setTextAndValue(LocaleController.getString("OfficialSite", R.string.OfficialSite), "qwq2333.top", true);
                     } else if (position == sourceCodeRow) {
                         textCell.setTextAndValue(LocaleController.getString("ViewSourceCode", R.string.ViewSourceCode), "GitHub", true);
                     } else if (position == licenseRow) {
                         textCell.setText(LocaleController.getString("OpenSource", R.string.OpenSource), true);
-                    }
-                    if (position == updateRow) {
-                        textCell.setTextAndValue(LocaleController.getString("CheckUpdate", R.string.CheckUpdate), "Click Me", true);
                     }
                     break;
                 }
@@ -312,7 +298,7 @@ public class MainSettingActivity extends BaseActivity {
                 return TYPE_SHADOW;
             } else if (position > categoriesRow && position < categories2Row) {
                 return TYPE_TEXT;
-            } else if ((position >= channelRow && position < about2Row) || position == updateRow) {
+            } else if ((position >= channelRow && position < about2Row)) {
                 return TYPE_SETTINGS;
             } else if (position == categoriesRow || position == aboutRow) {
                 return TYPE_HEADER;
