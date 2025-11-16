@@ -1,4 +1,4 @@
-ackage org.telegram.messenger.camera;
+package org.telegram.messenger.camera;
 
 import android.annotation.TargetApi;
 import android.content.Context;
