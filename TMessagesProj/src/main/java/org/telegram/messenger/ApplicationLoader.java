@@ -1,20 +1,3 @@
-/*
- * Copyright (C) 2019-2025 qwq233 <qwq233@qwq2333.top>
- * https://github.com/qwq233/Nullgram
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, version 2 of the License.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-
 package org.telegram.messenger;
 
 import android.annotation.SuppressLint;
@@ -178,6 +161,7 @@ public class ApplicationLoader extends Application {
         return false;
     }
 
+    @SuppressLint("SdCardPath")
     public static File getFilesDirFixed() {
         for (int a = 0; a < 10; a++) {
             File path = ApplicationLoader.applicationContext.getFilesDir();
@@ -193,7 +177,7 @@ public class ApplicationLoader extends Application {
         } catch (Exception e) {
             FileLog.e(e);
         }
-        return new File("/data/data/top.qwq2333.nullgram/files");
+        return new File("/data/data/" + BuildVars.PACKAGE_NAME + "/files");
     }
 
     public static File getFilesDirFixed(String child) {
@@ -350,7 +334,7 @@ public class ApplicationLoader extends Application {
 
         applicationHandler = new Handler(applicationContext.getMainLooper());
 
-        org.osmdroid.config.Configuration.getInstance().setUserAgentValue("Nullgram" + BuildConfig.VERSION_NAME);
+        org.osmdroid.config.Configuration.getInstance().setUserAgentValue(BuildVars.APP_NAME + BuildConfig.VERSION_NAME);
         org.osmdroid.config.Configuration.getInstance().setOsmdroidBasePath(new File(ApplicationLoader.applicationContext.getCacheDir(), "osmdroid"));
 
 

@@ -1430,7 +1430,7 @@ public class LocaleController {
                     return ApplicationLoader.applicationContext.getString(R.string.appName);
                 }
                 case "TelegramFeaturesUrl":
-                    return "t.me/NullgramClient";
+                    return "t.me/" + BuildVars.TELEGRAM_GROUP;
                 case "UnsupportedMedia":
                     return ApplicationLoader.applicationContext.getString(R.string.UnsupportedMediaNullgram);
                 default:
@@ -1462,7 +1462,7 @@ public class LocaleController {
         }
 
         if (value.contains("Telegram"))
-            value = value.replace("Telegram", "Nullgram");
+            value = value.replace("Telegram", BuildVars.APP_NAME);
         if (value.contains("TELEOFFICIAL"))
             value = value.replace("TELEOFFICIAL", "Telegram");
         return value;
@@ -1691,7 +1691,7 @@ public class LocaleController {
             }
 
             if (value.contains("Telegram")) {
-                value = value.replace("Telegram", "Nullgram");
+                value = value.replace("Telegram", BuildVars.APP_NAME);
             }
             if (value.contains("TELEOFFICIAL")) {
                 value = value.replace("TELEOFFICIAL", "Telegram");

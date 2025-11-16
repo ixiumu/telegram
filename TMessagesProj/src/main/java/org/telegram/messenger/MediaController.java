@@ -1,20 +1,3 @@
-/*
- * Copyright (C) 2019-2025 qwq233 <qwq233@qwq2333.top>
- * https://github.com/qwq233/Nullgram
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, version 2 of the License.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-
 package org.telegram.messenger;
 
 import static org.telegram.ui.PhotoViewer.getTempFileAbsolutePath;
@@ -78,6 +61,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.webkit.MimeTypeMap;
 import android.widget.FrameLayout;
+
+import androidx.annotation.RequiresApi;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlayer;
@@ -5366,7 +5351,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             } else {
                                 dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
                             }
-                            dir = new File(dir, "Nullgram");
+                            dir = new File(dir, BuildVars.APP_NAME);
                             dir.mkdirs();
                             destFile = new File(dir, name);
                             if (destFile.exists()) {
@@ -5448,6 +5433,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
+    @RequiresApi(api = VERSION_CODES.Q)
     private static Uri saveFileInternal(int type, File sourceFile, String filename) {
         try {
             int selectedType = type;
@@ -5471,7 +5457,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     filename = AndroidUtilities.generateFileName(0, extension);
                 }
                 uriToInsert = MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
-                File dirDest = new File(Environment.DIRECTORY_PICTURES, "Nullgram");
+                File dirDest = new File(Environment.DIRECTORY_PICTURES, BuildVars.APP_NAME);
                 contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, dirDest + File.separator);
                 contentValues.put(MediaStore.Images.Media.DISPLAY_NAME, filename);
                 contentValues.put(MediaStore.Images.Media.MIME_TYPE, mimeType);
@@ -5479,7 +5465,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 if (filename == null) {
                     filename = AndroidUtilities.generateFileName(1, extension);
                 }
-                File dirDest = new File(Environment.DIRECTORY_MOVIES, "Nullgram");
+                File dirDest = new File(Environment.DIRECTORY_MOVIES, BuildVars.APP_NAME);
                 contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, dirDest + File.separator);
                 uriToInsert = MediaStore.Video.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
                 contentValues.put(MediaStore.Video.Media.DISPLAY_NAME, filename);
@@ -5487,7 +5473,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 if (filename == null) {
                     filename = sourceFile.getName();
                 }
-                File dirDest = new File(Environment.DIRECTORY_DOWNLOADS, "Nullgram");
+                File dirDest = new File(Environment.DIRECTORY_DOWNLOADS, BuildVars.APP_NAME);
                 contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, dirDest + File.separator);
                 uriToInsert = MediaStore.Downloads.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
                 contentValues.put(MediaStore.Downloads.DISPLAY_NAME, filename);
@@ -5495,7 +5481,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 if (filename == null) {
                     filename = sourceFile.getName();
                 }
-                File dirDest = new File(Environment.DIRECTORY_MUSIC, "Nullgram");
+                File dirDest = new File(Environment.DIRECTORY_MUSIC, BuildVars.APP_NAME);
                 contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, dirDest + File.separator);
                 uriToInsert = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
                 contentValues.put(MediaStore.Audio.Media.DISPLAY_NAME, filename);
