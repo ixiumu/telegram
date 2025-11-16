@@ -18,8 +18,8 @@ public class BuildVars {
     public static boolean NO_SCOPED_STORAGE = Build.VERSION.SDK_INT <= 29;
     public static final int BUILD_VERSION = 6166;
     public static final String BUILD_VERSION_STRING = "12.0.1";
-    public static final int APP_ID = 32286570;
-    public static final String APP_HASH = "2e9c0b70ad515936dae85ef587d00d9e";
+    public static final int APP_ID = 935887;
+    public static final String APP_HASH = "911222abd59be8c46636cb6c2045aef9";
     public static final String APPCENTER_HASH = "PLACEHOLDER";
     public static String SAFETYNET_KEY = "";
 
