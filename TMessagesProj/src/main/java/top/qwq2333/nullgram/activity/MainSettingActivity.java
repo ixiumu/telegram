@@ -254,7 +254,7 @@ public class MainSettingActivity extends BaseActivity {
                 case TYPE_SETTINGS: {
                     TextSettingsCell textCell = (TextSettingsCell) holder.itemView;
                     if (position == channelRow) {
-                        textCell.setTextAndValue(BuildVars.TELEGRAM_CHANNEL, "@" + BuildVars.TELEGRAM_CHANNEL, true);
+                        textCell.setTextAndValue(LocaleController.getString("OfficialChannel", R.string.OfficialChannel), "@" + BuildVars.TELEGRAM_CHANNEL, true);
                     } else if (position == sourceCodeRow) {
                         textCell.setTextAndValue(LocaleController.getString("ViewSourceCode", R.string.ViewSourceCode), "GitHub", true);
                     } else if (position == licenseRow) {
