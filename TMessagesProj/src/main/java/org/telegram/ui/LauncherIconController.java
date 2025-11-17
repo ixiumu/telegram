@@ -34,7 +34,7 @@ public class LauncherIconController {
     }
 
     public enum LauncherIcon {
-        DEFAULT("DefaultIcon", R.mipmap.ic_launcher_background, R.mipmap.ic_launcher_foreground, R.string.AppIconDefault),
+        DEFAULT("DefaultIcon", R.drawable.icon_background_sa, R.mipmap.ic_launcher_foreground, R.string.AppIconDefault),
         OFFICIAL("OFFICIAL", R.drawable.icon_background_sa, R.mipmap.icon_foreground_sa, R.string.Official),
         ICON1("ICON1", R.mipmap.ic_launcher_background, R.drawable.icon_1, R.string.icon_1),
         ICON2("ICON2", R.mipmap.ic_launcher_background, R.drawable.icon_2, R.string.icon_2),

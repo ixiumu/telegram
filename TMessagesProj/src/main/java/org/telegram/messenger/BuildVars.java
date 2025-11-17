@@ -8,7 +8,8 @@ public class BuildVars {
 
     public static final String APP_NAME = "Cipher";
     public static final String PACKAGE_NAME = "com.android.cipher";
-    public static final String TELEGRAM_GROUP = "NullgramClient";
+    public static final String TELEGRAM_CHANNEL = "CipherClient";
+    public static final String GITHUB_REPO = "";
 
     public static final boolean DEBUG_VERSION = true;
     public static boolean DEBUG_PRIVATE_VERSION = false;
@@ -20,7 +21,7 @@ public class BuildVars {
     public static final String BUILD_VERSION_STRING = "12.0.1";
     public static final int APP_ID = 935887;
     public static final String APP_HASH = "911222abd59be8c46636cb6c2045aef9";
-    public static final String APPCENTER_HASH = "PLACEHOLDER";
+    public static final String APPCENTER_HASH = "49C1522548EBACD46CE322B6FD47F6092BB745D0F88082145CAF35E14DCC38E1";
     public static String SAFETYNET_KEY = "";
 
     public static String SMS_HASH = "O2P2z+/jBpJ";

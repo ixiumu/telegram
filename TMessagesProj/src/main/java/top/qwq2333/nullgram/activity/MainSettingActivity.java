@@ -1,22 +1,3 @@
-/*
- * Copyright (C) 2019-2025 qwq233 <qwq233@qwq2333.top>
- * https://github.com/qwq233/Nullgram
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License along with this software.
- *  If not, see
- * <https://www.gnu.org/licenses/>
- */
-
 package top.qwq2333.nullgram.activity;
 
 import android.annotation.SuppressLint;
@@ -34,6 +15,7 @@ import com.jakewharton.processphoenix.ProcessPhoenix;
 import org.json.JSONException;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -107,9 +89,9 @@ public class MainSettingActivity extends BaseActivity {
         } else if (position == experimentRow) {
             presentFragment(new ExperimentSettingActivity(sensitiveEnabled, sensitiveCanChange));
         } else if (position == channelRow) {
-            MessagesController.getInstance(currentAccount).openByUserName(LocaleController.getString("OfficialChannelName", R.string.OfficialChannelName), this, 1);
+            MessagesController.getInstance(currentAccount).openByUserName(BuildVars.TELEGRAM_CHANNEL, this, 1);
         } else if (position == sourceCodeRow) {
-            Browser.openUrl(getParentActivity(), "https://github.com/qwq233/Nullgram");
+            Browser.openUrl(getParentActivity(), BuildVars.GITHUB_REPO);
         } else if (position == licenseRow) {
             presentFragment(new LicenseActivity());
         } else if (position == passcodeRow) {
@@ -225,7 +207,13 @@ public class MainSettingActivity extends BaseActivity {
 
         aboutRow = addRow();
         channelRow = addRow();
-        sourceCodeRow = addRow();
+
+        if (!BuildVars.GITHUB_REPO.isEmpty()) {
+            sourceCodeRow = addRow();
+        } else {
+            sourceCodeRow = -1;
+        }
+
         licenseRow = addRow();
         about2Row = addRow();
 
@@ -241,7 +229,7 @@ public class MainSettingActivity extends BaseActivity {
 
         @Override
         public int getItemCount() {
-            return rowCount;
+            return super.getItemCount();
         }
 
         @Override
@@ -266,7 +254,7 @@ public class MainSettingActivity extends BaseActivity {
                 case TYPE_SETTINGS: {
                     TextSettingsCell textCell = (TextSettingsCell) holder.itemView;
                     if (position == channelRow) {
-                        textCell.setTextAndValue(LocaleController.getString("OfficialChannel", R.string.OfficialChannel), "@" + LocaleController.getString("OfficialChannelName", R.string.OfficialChannelName), true);
+                        textCell.setTextAndValue(BuildVars.TELEGRAM_CHANNEL, "@" + BuildVars.TELEGRAM_CHANNEL, true);
                     } else if (position == sourceCodeRow) {
                         textCell.setTextAndValue(LocaleController.getString("ViewSourceCode", R.string.ViewSourceCode), "GitHub", true);
                     } else if (position == licenseRow) {

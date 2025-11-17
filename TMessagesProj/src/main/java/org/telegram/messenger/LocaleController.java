@@ -1430,7 +1430,7 @@ public class LocaleController {
                     return ApplicationLoader.applicationContext.getString(R.string.appName);
                 }
                 case "TelegramFeaturesUrl":
-                    return "t.me/" + BuildVars.TELEGRAM_GROUP;
+                    return "t.me/" + BuildVars.TELEGRAM_CHANNEL;
                 case "UnsupportedMedia":
                     return ApplicationLoader.applicationContext.getString(R.string.UnsupportedMediaNullgram);
                 default:

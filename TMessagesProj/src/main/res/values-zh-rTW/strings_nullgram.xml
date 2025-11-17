@@ -319,14 +319,14 @@
     <string name="HideStories">隱藏限時動態</string>
     <string name="storyStealthMode">限時動態隱身模式</string>
     <string name="OneMoreThing">還有一件事</string>
-    <string name="NotOriginalNullgramInfo">看起來您正在使用 Nullgram 的分支。\n您是否也想關注 Nullgram 的頻道？</string>
+    <string name="NotOriginalNullgramInfo">看起來您正在使用 TELEOFFICIAL 的分支。\n您是否也想關注 Telegram 的頻道？</string>
     <string name="Official">官方</string>
     <string name="Before">在此之前…</string>
     <string name="Custom">自訂選項</string>
     <string name="MonoCode">代碼</string>
     <string name="CreateCode">創建代碼</string>
     <string name="CreateCodeLanguage">語言</string>
-    <string name="UnsupportedMediaNullgram">您的 Nullgram 版本不支援此訊息。請更新應用程式以查看：https://t.me/NullgramClient</string>
+    <string name="UnsupportedMediaNullgram">您的 Telegram 版本不支援此訊息。請更新應用程式以查看：https://t.me/NullgramClient</string>
     <string name="ignoreUserSpecifiedReplyColor">忽略用戶設定的回覆顏色</string>
     <string name="ShowTitle">顯示標題</string>
     <string name="HideTitle">隱藏標題</string>

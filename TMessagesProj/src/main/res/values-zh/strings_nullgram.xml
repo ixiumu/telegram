@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="NullgramPushService">Cipher 推送服务</string>
-    <string name="NullSettings">插件设置</string>
+    <string name="NullgramPushService">Telegram 推送服务</string>
+    <string name="NullSettings">插件</string>
     <string name="OfficialChannel">官方频道</string>
     <string name="Chat">聊天</string>
     <string name="Experiment">实验性功能</string>
@@ -25,7 +25,7 @@
     <string name="InvalidAccessToken">无效访问令牌</string>
     <string name="QRLoginTitle">二维码 登入</string>
     <string name="QRLoginMessage">用另一个设备扫描二维码登录。</string>
-    <string name="NullgramVersion">Cipher %1$s\n基于 Telegram %2$s</string>
+    <string name="NullgramVersion">Telegram %1$s\n基于 TELEOFFICIAL %2$s</string>
     <string name="RestrictionReason">限制原因</string>
     <string name="showBotAPIID">显示Bot API ID</string>
     <string name="hideGroupSticker">隐藏群组贴纸包</string>
@@ -68,7 +68,7 @@
     <string name="AutoCheckUpdateSwitch">自动更新</string>
     <string name="AutoCheckUpdateStable">正式版</string>
     <string name="AutoCheckUpdatePreview">预览版 (不稳定)</string>
-    <string name="AppUpdateNullgram">更新 Nullgram</string>
+    <string name="AppUpdateNullgram">更新 Telegram</string>
     <string name="VersionUpdateNoUpdate">无更新</string>
     <string name="DoNotRemindAgain">不再提示</string>
     <string name="FCTitle">关于应用更新</string>
@@ -85,7 +85,7 @@
     <string name="PrivacyNoticePhoneVisible">检测到您的手机号码对任何人都可见。 这可能会导致政府控制的黑客找到您的真实身份，请关闭它！</string>
     <string name="PrivacyNoticeAddByPhone">检测到您没有被关闭“允许通过电话号码找到我”设置， 这可能会导致政府控制的黑客找到您的真实身份，请关闭它！</string>
     <string name="hidePhone">隐藏手机号码</string>
-    <string name="AppLinkNotVerifiedMessage">对于Android 12及更高版本，您需要手动添加链接到验证链接以打开Nullgram 的 t.me 链接</string>
+    <string name="AppLinkNotVerifiedMessage">对于Android 12及更高版本，您需要手动添加链接到验证链接以打开Telegram 的 t.me 链接</string>
     <string name="AppLinkNotVerifiedTitle">应用链接未验证</string>
     <string name="showExactNumber">显示精确数字</string>
     <string name="disableJumpToNextChannel">禁用跳转到下一个频道</string>
@@ -162,7 +162,7 @@
     <string name="Passcode1">密码锁</string>
     <string name="UnknownSettings">未知设定</string>
     <string name="PasscodeNeeded">您必须先启用密码锁</string>
-    <string name="PasscodeShowInSettings">在Nullgram设置中查看</string>
+    <string name="PasscodeShowInSettings">在设置中显示</string>
     <string name="PasscodeShowInSettingsAbout">隐藏后，您**仅**可以通过链接打开设置：</string>
     <string name="PasscodeSet">设置密码锁</string>
     <string name="PasscodeEdit">更改密码锁</string>
@@ -213,7 +213,7 @@
     <string name="disableSharePhoneWithContactByDefault">添加联系人时不分享手机号码</string>
     <string name="disableStickersAutoReorder">禁用贴纸自动重新排列</string>
     <string name="autoDisableBuiltInProxy">自动关闭内置代理</string>
-    <string name="autoDisableBuiltInProxyDesc">当 Nullgram 检测到您打开 VPN 时，它将自动关闭内置代理</string>
+    <string name="autoDisableBuiltInProxyDesc">当 Telegram 检测到您打开 VPN 时，它将自动关闭内置代理</string>
     <string name="NullgramWsDescription">通过 Cloudflare 提供的 WebSocket 连接到 TELEOFFICIAL。\n由 Nullgram 提供</string>
     <string name="NekogramXWsDescription">由 Nekogram X 提供</string>
     <string name="WsGetHelp">你也可以轻松地自己部署它！</string>
@@ -224,7 +224,7 @@
     <string name="WsProvider">提供者</string>
     <string name="PublicProxy">公共代理</string>
     <string name="SwitchBackend">切换后端</string>
-    <string name="UpdateInstalling">安装更新中...</string>
+    <string name="UpdateInstalling">安装更新中…</string>
     <string name="UpdateInstallingRelaunch">更新完成后应用将重新启动。</string>
     <string name="UpdateInstallingNotification">更新完成后将显示通知。</string>
     <string name="NoUpdateAvailablePlay">请在 Play 商店检查更新。</string>
@@ -264,7 +264,7 @@
     <string name="SensitiveAbout">在您所有设备上显示公共频道中的敏感媒体内容。</string>
     <string name="InstallProhibitedPlay">安装聊天中的 APK 文件在 Play Store 版本的应用程序不可用中。\n请手动保存它并从文件管理器安装。</string>
     <string name="TranslatorTypeInMessage">消息内</string>
-    <string name="SmsDisabled">由于TELEOFFICIAL的政策，任何第三方的TELEOFFICIAL客户端目前都禁用了短信登录。\n我们对造成的任何不便表示歉意。</string>
+    <string name="SmsDisabled">由于 TELEOFFICIAL 的政策，任何第三方的 TELEOFFICIAL 客户端目前都禁用了短信登录。\n我们对造成的任何不便表示歉意。</string>
     <string name="DevicePerformanceAuto">默认</string>
     <string name="DevicePerformanceLow">低</string>
     <string name="DevicePerformanceMedium">中</string>
@@ -302,14 +302,14 @@
     <string name="HideStories">隐藏动态</string>
     <string name="storyStealthMode">动态隐身模式</string>
     <string name="OneMoreThing">还有一件事</string>
-    <string name="NotOriginalNullgramInfo">你似乎正在使用 Nullgram 的分支。\n你想要关注 Nullgram 的频道吗？</string>
+    <string name="NotOriginalNullgramInfo">你似乎正在使用 TELEOFFICIAL 的分支。\n你想要关注 Telegram 的频道吗？</string>
     <string name="Official">官方</string>
-    <string name="Before">开始...</string>
+    <string name="Before">开始…</string>
     <string name="Custom">自定义</string>
     <string name="MonoCode">代码</string>
     <string name="CreateCode">创建代码</string>
     <string name="CreateCodeLanguage">语言</string>
-    <string name="UnsupportedMediaNullgram">当前版本的 Nullgram 不支持这条消息。更新应用以查看: https://t.me/NullgramClient</string>
+    <string name="UnsupportedMediaNullgram">当前版本的 Telegram 不支持这条消息，请更新应用。</string>
     <string name="ignoreUserSpecifiedReplyColor">忽略用户设置的回复颜色</string>
     <string name="ShowTitle">显示标题</string>
     <string name="HideTitle">隐藏标题</string>

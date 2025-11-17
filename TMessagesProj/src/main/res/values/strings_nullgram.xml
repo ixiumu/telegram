@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="appName" translatable="false">Cipher</string>
-    <string name="NullgramPushService">Cipher Push Service</string>
-    <string name="NullSettings">Cipher Settings</string>
+    <string name="OfficialChannelName" translatable="false">NullgramClient</string>
+    <string name="NullgramPushService">Telegram Push Service</string>
+    <string name="NullSettings">Extensions</string>
     <string name="OfficialChannel">Official Channel</string>
     <string name="Chat">Chat</string>
     <string name="Experiment">Experiment</string>
@@ -10,7 +11,6 @@
     <string name="ViewSourceCode">View Source Code</string>
     <string name="Categories">Categories</string>
     <string name="About">About</string>
-    <string name="OfficialChannelName" translatable="false">NullgramClient</string>
     <string name="noAvailableUpdate">No Update.</string>
     <string name="updateAvailable">New Update Available</string>
     <string name="variantsNotFound">Release variants fail to match automatically.\nPlease download manually from GitHub.</string>
@@ -27,7 +27,7 @@
     <string name="InvalidAccessToken">Invalid access token</string>
     <string name="QRLoginTitle">QR Login</string>
     <string name="QRLoginMessage">Scan QRCode with another device to login.</string>
-    <string name="NullgramVersion">Cipher %1$s\nBased on Telegram %2$s</string>
+    <string name="NullgramVersion">Telegram %1$s\nBased on TELEOFFICIAL %2$s</string>
     <string name="RestrictionReason">Restriction reason</string>
     <string name="showBotAPIID">Show Bot API ID</string>
     <string name="hideGroupSticker">Hide Group Sticker Pack</string>
@@ -70,7 +70,7 @@
     <string name="AutoCheckUpdateSwitch">Automatic Update</string>
     <string name="AutoCheckUpdateStable">Stable</string>
     <string name="AutoCheckUpdatePreview">Preview (Unstable)</string>
-    <string name="AppUpdateNullgram">Update Cipher</string>
+    <string name="AppUpdateNullgram">Update Telegram</string>
     <string name="VersionUpdateNoUpdate">No Update</string>
     <string name="DoNotRemindAgain">Don\'t remind again</string>
     <string name="FCTitle">About application updates</string>
@@ -87,7 +87,7 @@
     <string name="PrivacyNoticePhoneVisible">It is detected that your mobile phone number is visible to anyone, which may cause government-controlled hackers to find your true identity, please turn it off!</string>
     <string name="PrivacyNoticeAddByPhone">It is detected that you are not turned off the \"Allow find me through phone number\" Setting, which may cause a government-controlled hacker to find your true identity, please turn it off!</string>
     <string name="hidePhone">Hide phone number</string>
-    <string name="AppLinkNotVerifiedMessage">For Android 12 and newer, you need to manually add link to verified links in order to open t.me links in Cipher</string>
+    <string name="AppLinkNotVerifiedMessage">For Android 12 and newer, you need to manually add link to verified links in order to open t.me links in Telegram</string>
     <string name="AppLinkNotVerifiedTitle">App links not verified</string>
     <string name="showExactNumber">Show Exact Number</string>
     <string name="disableJumpToNextChannel">Disable Jump to Next Channel</string>
@@ -165,7 +165,7 @@
     <string name="Passcode1">Passcode</string>
     <string name="UnknownSettings">Unknown Settings</string>
     <string name="PasscodeNeeded">You have to enable passcode lock first</string>
-    <string name="PasscodeShowInSettings">Show in Cipher Settings</string>
+    <string name="PasscodeShowInSettings">Show in Telegram Settings</string>
     <string name="PasscodeShowInSettingsAbout">After hiding, you can **ONLY** open settings by link:</string>
     <string name="PasscodeSet">Set passcode</string>
     <string name="PasscodeEdit">Change passcode</string>
@@ -216,18 +216,18 @@
     <string name="disableSharePhoneWithContactByDefault">No Share Phone Number When Add Contact</string>
     <string name="disableStickersAutoReorder">Disable sticker packs auto-reorder</string>
     <string name="autoDisableBuiltInProxy">Auto Disable Built-In Proxy</string>
-    <string name="autoDisableBuiltInProxyDesc">It will automatically turn off the built-in proxy when Cipher detected you turn on the VPN</string>
-    <string name="NullgramWsDescription">Connect to Telegram through WebSocket via Cloudflare.\nProvided by Nullgram</string>
+    <string name="autoDisableBuiltInProxyDesc">It will automatically turn off the built-in proxy when Telegram detected you turn on the VPN</string>
+    <string name="NullgramWsDescription">Connect to TELEOFFICIAL through WebSocket via Cloudflare.\nProvided by Nullgram</string>
     <string name="NekogramXWsDescription">Provided by Nekogram X</string>
     <string name="WsGetHelp">You can also deploy it easily by yourself!</string>
-    <string name="WsCustomDescription">Use custom domain to connect to Telegram through WebSocket via Cloudflare.</string>
+    <string name="WsCustomDescription">Use custom domain to connect to TELEOFFICIAL through WebSocket via Cloudflare.</string>
     <string name="WsEnableTls">Enable TLS</string>
     <string name="WsLocalProxy">Local proxy</string>
     <string name="WsEnableDoh">Enable DoH</string>
     <string name="WsProvider">Provider</string>
     <string name="PublicProxy">Built-in Public Proxy</string>
     <string name="SwitchBackend">Switch Backend</string>
-    <string name="UpdateInstalling">Installing update...</string>
+    <string name="UpdateInstalling">Installing update…</string>
     <string name="UpdateInstallingRelaunch">The app will relaunch when the update completes.</string>
     <string name="UpdateInstallingNotification">A notification will be shown when the update completes.</string>
     <string name="NoUpdateAvailablePlay">Please check for update in Play Store.</string>
@@ -306,14 +306,14 @@
     <string name="HideStories">Hide Stories</string>
     <string name="storyStealthMode">Story Stealth mode</string>
     <string name="OneMoreThing">One More Thing</string>
-    <string name="NotOriginalNullgramInfo">It seems that you\'re using a fork of Cipher.\nDo you also want to follow Cipher\'s Channel?</string>
+    <string name="NotOriginalNullgramInfo">It seems that you\'re using a fork of TELEOFFICIAL.\nDo you also want to follow Telegram\'s Channel?</string>
     <string name="Official">Official</string>
-    <string name="Before">Before...</string>
+    <string name="Before">Before…</string>
     <string name="Custom">Custom</string>
     <string name="MonoCode">Code</string>
     <string name="CreateCode">Create Code</string>
     <string name="CreateCodeLanguage">Language</string>
-    <string name="UnsupportedMediaNullgram">This message is not supported on your version of Cipher. Update the app to view: https://t.me/NullgramClient</string>
+    <string name="UnsupportedMediaNullgram">This message is not supported on your version of Telegram. </string>
     <string name="ignoreUserSpecifiedReplyColor">Ignore user-set reply color</string>
     <string name="ShowTitle">Show title</string>
     <string name="HideTitle">Hide title</string>
@@ -330,10 +330,10 @@
     <string name="SaveToDownloadCount_few">Saving %1$d files to Download</string>
     <string name="SaveToDownloadCount_many">Saving %1$d files to Download</string>
     <string name="SaveToDownloadCount_other">Saving %1$d files to Download</string>
-  <string name="InvalidPattern">Invalid Pattern</string>
-  <string name="sendLargePhoto">Send large photo</string>
-  <string name="Details">Details</string>
-  <string name="DontAskAgain">Don\'t ask again</string>
+    <string name="InvalidPattern">Invalid Pattern</string>
+    <string name="sendLargePhoto">Send large photo</string>
+    <string name="Details">Details</string>
+    <string name="DontAskAgain">Don\'t ask again</string>
     <string name="NoFilesFound">No files found</string>
     <string name="NoFilesInfo">No file\'s info</string>
     <string name="SearchRecentFiles">Search recent files</string>
